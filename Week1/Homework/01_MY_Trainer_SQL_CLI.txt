@@ -1,0 +1,194 @@
+mysql> CREATE database World;
+Query OK, 1 row affected (0.18 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| userdb             |
+| world              |
++--------------------+
+6 rows in set (0.15 sec)
+
+mysql> use World;
+Database changed
+
+mysql> show tables;
+Empty set (0.06 sec)
+
+mysql> CREATE table Country (
+    -> id int,
+    -> name varchar (255)
+    -> );
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_world |
++-----------------+
+| country         |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select * from country;
+Empty set (0.03 sec)
+
+mysql> INSERT INTO country VALUES(id, name);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO country (id, name) VALUES (id, name);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
+| NULL | NULL |
++------+------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE country SET id=1 WHERE id = 0;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE country SET id=1 WHERE id = NULL;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE country SET id=1 WHERE id = NULL;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
+| NULL | NULL |
++------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (id, name) VALUES (1, 'Argentina');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
++------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (id) VALUES (2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO country (id, name) VALUES (1, 'Argentina');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
++------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (name) VALUES (3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
+| NULL | 3         |
++------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO country VALUES (6, 'Argentina');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
+| NULL | 3         |
+|    6 | Argentina |
++------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (name,id) VALUES ('Argentina',5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
+| NULL | 3         |
+|    6 | Argentina |
+|    5 | Argentina |
++------+-----------+
+8 rows in set (0.00 sec)
+
+
+mysql> ALTER TABLE country
+    -> ADD population varchar(255);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM country;
++------+-----------+------------+
+| id   | name      | population |
++------+-----------+------------+
+| NULL | NULL      | NULL       |
+| NULL | NULL      | NULL       |
+|    1 | Argentina | NULL       |
+|    2 | NULL      | NULL       |
+|    1 | Argentina | NULL       |
+| NULL | 3         | NULL       |
+|    6 | Argentina | NULL       |
+|    5 | Argentina | NULL       |
++------+-----------+------------+
+8 rows in set (0.00 sec)
+

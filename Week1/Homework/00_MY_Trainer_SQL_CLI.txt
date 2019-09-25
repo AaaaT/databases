@@ -1,0 +1,262 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.17 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE database World;
+Query OK, 1 row affected (0.18 sec)
+
+mysql> show databases
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+mysql> ^C
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| userdb             |
+| world              |
++--------------------+
+6 rows in set (0.15 sec)
+
+mysql> use World;
+Database changed
+mysql> CREATE table Country;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> showtables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showtables' at line 1
+mysql> show tables;
+Empty set (0.06 sec)
+
+mysql> CREATE table  World.Country (ID, Name);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', Name)' at line 1
+mysql> CREATE table Country (Id, Name);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', Name)' at line 1
+mysql> CREATE table Country (
+    -> id int,
+    -> name varchar (255)
+    -> );
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_world |
++-----------------+
+| country         |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select * from country;
+Empty set (0.03 sec)
+
+mysql> INSERT INTO country VALUES(Name, Population);
+ERROR 1054 (42S22): Unknown column 'Population' in 'field list'
+mysql> INSERT INTO country VALUES(id, name);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> INT(N)type;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INT(N)type' at line 1
+mysql> INT(N)type
+    -> DATE, DATETIME and TIMESTAMP, (set time_zone = '+03:00')
+    -> ^C
+mysql> INSERT INTO country (id, name) VALUES(1, Argentina);
+ERROR 1054 (42S22): Unknown column 'Argentina' in 'field list'
+mysql> SELECT * country;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'country' at line 1
+mysql> SELECT * FROM country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO country (id, name) VALUES (name, Argentina);
+ERROR 1054 (42S22): Unknown column 'Argentina' in 'field list'
+mysql> INSERT INTO country (id, name) VALUES (id, name);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
+| NULL | NULL |
++------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO country VALUES(id, name [1,Argentina]);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[1,Argentina])' at line 1
+mysql> INSERT INTO table(c1,c2,...)
+    -> ^C
+mysql> INSERT INTO table(c1,c2,...)
+    -> ^C
+mysql> UPDATE country SET id=1 WHERE id = 0;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE country SET id=1 WHERE id = NULL;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE country SET id=1 WHERE id = NULL;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql>
+mysql>
+mysql> SELECT * FROM country;
++------+------+
+| id   | name |
++------+------+
+| NULL | NULL |
+| NULL | NULL |
++------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (id, name) VALUES (1, 'Argentina');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
++------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (id) VALUES (2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO country (id, name) VALUES (1, 'Argentina');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
++------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (name) VALUES (3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
+| NULL | 3         |
++------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (id, name) VALUES ('Argentina',5);
+ERROR 1366 (HY000): Incorrect integer value: 'Argentina' for column 'id' at row 1
+mysql> INSERT INTO country VALUES (6, 'Argentina');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
+| NULL | 3         |
+|    6 | Argentina |
++------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO country (name,id) VALUES (1, 'Argentina');
+ERROR 1366 (HY000): Incorrect integer value: 'Argentina' for column 'id' at row 1
+mysql> INSERT INTO country (name,id) VALUES ('Argentina',5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+
+| id   | name      |
++------+-----------+
+| NULL | NULL      |
+| NULL | NULL      |
+|    1 | Argentina |
+|    2 | NULL      |
+|    1 | Argentina |
+| NULL | 3         |
+|    6 | Argentina |
+|    5 | Argentina |
++------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> alter table coutryALTER TABLE table_name
+    -> a^Cer table coutryALTER TABLE table_name
+mysql> ALTER TABLE table_name
+    -> ADD column_name datatype;^C
+mysql> ALTER TABLE country
+    -> ADD population varchar(255);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM country;
++------+-----------+------------+
+| id   | name      | population |
++------+-----------+------------+
+| NULL | NULL      | NULL       |
+| NULL | NULL      | NULL       |
+|    1 | Argentina | NULL       |
+|    2 | NULL      | NULL       |
+|    1 | Argentina | NULL       |
+| NULL | 3         | NULL       |
+|    6 | Argentina | NULL       |
+|    5 | Argentina | NULL       |
++------+-----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM country;
++------+-----------+------------+
+| id   | name      | population |
++------+-----------+------------+
+| NULL | NULL      | NULL       |
+| NULL | NULL      | NULL       |
+|    1 | Argentina | NULL       |
+|    2 | NULL      | NULL       |
+|    1 | Argentina | NULL       |
+| NULL | 3         | NULL       |
+|    6 | Argentina | NULL       |
+|    5 | Argentina | NULL       |
++------+-----------+------------+
+8 rows in set (0.00 sec)
+
+mysql>
