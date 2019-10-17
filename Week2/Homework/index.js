@@ -12,9 +12,9 @@ connection.connect(function(err) {
  console.log('Connected!');
 });
 
-//Select from country table where capital is 1109
+//Select from country table where capital is Stockholm
 
-connection.execute('select * from `country` where `capital`= ?', ['1109'], (err, results, fields) => {
+connection.execute('select * from `country` where `capital`= ?', ['Stockholm'], (err, results, fields) => {
  console.log(results);
  // console.log(fields);
  connection.unprepare('select * from `country` where `capital`= ?');
